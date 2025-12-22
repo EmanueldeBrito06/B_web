@@ -33,7 +33,7 @@ export const FormContainer = styled.div`
 export const InputBase = styled.input`
     background: transparent;
     border: none;
-    border-bottom: 2px solid ${(props) => props.theme['gray-500']};
+    border-bottom: 1px solid ${(props) => props.theme['gray-500']};
     color: ${(props) => props.theme['gray-100']};
     font-weight: bold;
     font-size: 1.125rem;
@@ -43,18 +43,26 @@ export const InputBase = styled.input`
     &::placeholder {
         color: ${(props) => props.theme['gray-500']};
     }
-     
+    
+    &:focus {
+        outline: none;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }     
 `;
 
-export const taskInput = styled(InputBase)`
+export const TaskInput = styled(InputBase)`
     flex: 1;
-    border: none;
+
+    &::-webkit-calendar-picker-indicator {
+        display: none !important;
+    }
+`;
+
+export const MinutesAmountInput = styled(InputBase)`
+    width: 4rem;
 
 `;
-export const minutesAmountInput = styled(InputBase)`
-
-`;
-
 
 export const CountdownContainer = styled.div`
     font-family: 'Roboto Mono', monospace;
@@ -69,9 +77,13 @@ export const CountdownContainer = styled.div`
         background: ${(props) => props.theme['gray-700']};
         padding: 2rem 1rem;         
         border-radius: 8px;
+        border: 2px solid ${(props) => props.theme['gray-700']};
+        font-weight: bold;
+        
     }
 `;  
 
+/* Separator Styles */
 export const Separator = styled.div`
     padding: 2rem 0;
     color: ${(props) => props.theme['blue-500']};
@@ -82,6 +94,7 @@ export const Separator = styled.div`
     justify-content: center;
 `;
 
+/* Button Container Styles */
 export const ButtonContainer = styled.button`
     width: 100%;
     padding: 1rem;

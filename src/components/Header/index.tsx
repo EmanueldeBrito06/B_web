@@ -1,6 +1,7 @@
 import { HeaderContainer } from "./styles"
-import logoImg from "../../assets/logo.svg"
+import logoImg from "../../assets/logo_bazuca.png"
 import { Timer, Scroll, } from 'phosphor-react'
+import { NavLink } from "react-router-dom"
 
 
 export function Header() {
@@ -9,14 +10,13 @@ export function Header() {
             <img src={logoImg} alt="" />
             
             <nav>
-                <a href="#" >
+                <NavLink to="/"  title="Home">
                     <Timer size={24} />
-                </a>
+                </NavLink>
 
-                <a href="#">
+                <NavLink to="/history" title="Histórico">
                     <Scroll size={24} />
-                </a>
-
+                </NavLink>
             </nav>
         </HeaderContainer>
     )
