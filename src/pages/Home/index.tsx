@@ -1,10 +1,28 @@
 import { Play } from 'lucide-react';
-import { HomeContainer, FormContainer, CountdownContainer, Separator, ButtonContainer, TaskInput, MinutesAmountInput } from './styles';
+import { useForm } from 'react-hook-form';
+
+import { HomeContainer, 
+    FormContainer, 
+    CountdownContainer, 
+    Separator, 
+    ButtonContainer, 
+    TaskInput, 
+    MinutesAmountInput 
+} from './styles';
 
 export function Home() {
+    const { register, handleSubmit, watch } = useForm<FormData>();
+
+    function handleFormSubmit(data: FormData) {
+        console.log(data);
+    }
+
+    const task = watch("task");
+    const isSubmitDisabled = !task;
+
     return (
         <HomeContainer>
-            <form action="">
+            <form onSubmit={handleSubmit(handleFormSubmit)} action="">
 
                 <FormContainer>
                     <label htmlFor="">Agora Vou Cofar em</label>
@@ -12,6 +30,7 @@ export function Home() {
                         id="task"
                         list="task-suggestions"
                         placeholder="Ate ao momento vou me cofar em..."
+                        {...register("task")}
                     />
 
                     <datalist id="task-suggestions">
@@ -32,6 +51,7 @@ export function Home() {
                             min={5}
                             max={100}
                             defaultValue={25}
+                            {...register("minutesAmount", { valueAsNumber: true })}
                         />
                         minutos
                     </label>
@@ -46,7 +66,7 @@ export function Home() {
                     <span>0</span>
                 </CountdownContainer>
 
-                <ButtonContainer disabled type="submit">
+                <ButtonContainer disabled={isSubmitDisabled} type="submit">
                     <Play size={24} />
                     Começar
                 </ButtonContainer>
