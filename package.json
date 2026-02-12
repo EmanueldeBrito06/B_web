@@ -11,11 +11,12 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "date-fns": "^4.1.0",
     "lucide-react": "^0.562.0",
     "phosphor-react": "^1.4.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-hook-form": "^7.69.0",
+    "react-hook-form": "^7.70.0",
     "react-router-dom": "^7.11.0",
     "styled-components": "^6.1.19",
     "zod": "^4.3.5"

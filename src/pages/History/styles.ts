@@ -24,6 +24,7 @@ export const HitoryList = styled.div`
         min-width: 600px;
 
         th {
+            width: 80%;
             background-color: ${(props) => props.theme['gray-600']};
             gap: 0.5rem;
             font-weight: 700;
@@ -33,7 +34,6 @@ export const HitoryList = styled.div`
             font-size: 0.875rem;
             line-height: 1.6;
          
-
             svg {
                 color: ${(props) => props.theme['blue-500']};
             }
@@ -79,6 +79,7 @@ const STATUS_COLORS = {
     yellow: 'yellow-500',
     green: 'green-500',
     red: 'red-500',
+    blue: 'blue-500',
 } as const;
 
 interface StatusProps {
