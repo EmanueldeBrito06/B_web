@@ -24,7 +24,6 @@ export const HitoryList = styled.div`
         min-width: 600px;
 
         th {
-            width: 80%;
             background-color: ${(props) => props.theme['gray-600']};
             gap: 0.5rem;
             font-weight: 700;
@@ -39,16 +38,15 @@ export const HitoryList = styled.div`
             }
 
             &:first-child {
+            
                 border-top-left-radius: 8px;
                 padding-left: 1.5rem;
-                
                 align-items: center;    
             }
 
             &:last-child {
                 border-top-right-radius: 8px;
                 padding-right: 1.5rem;
-                
                 align-items: center;
             }
 
@@ -62,9 +60,10 @@ export const HitoryList = styled.div`
             font-size: 0.875rem;
             line-height: 1.6;
             width: 100%;
+            
 
             &:first-child {
-                width: 50%;
+                width: 20%;
                 padding-left: 1.5rem;
             }
                 

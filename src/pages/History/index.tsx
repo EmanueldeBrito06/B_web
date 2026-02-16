@@ -1,10 +1,18 @@
 import { Clock, Calendar, CheckCircle, BookOpen } from 'lucide-react';
 import { HitoryContainer, HitoryList, Status } from "./styles";
+import { useContext } from 'react';
+import { CycleContext } from '../../contexts/CyclesContext';
+import { formatDistanceToNow } from 'date-fns';
+import { ptBR }  from 'date-fns/locale/pt-BR';
+
+
 export function History() {
+    const { cycles } = useContext(CycleContext);
+
+
     return (
         <HitoryContainer >
             <h1>Meu Historicos</h1>
-
             <HitoryList>
                 <table>
                     <thead>
@@ -15,56 +23,33 @@ export function History() {
                             <th><CheckCircle size={16} /> Status </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Estudar React</td>
-                            <td>25 minutos</td>
-                            <td>20/06/2024</td>
-                            <td>
-                                <Status statusColor="green">Concluído</Status>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Estudar React</td>
-                            <td>25 minutos</td>
-                            <td>20/06/2024</td>
-                            <td>
-                                <Status statusColor="blue">Concluído</Status>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Estudar React</td>
-                            <td>25 minutos</td>
-                            <td>20/06/2024</td>
-                            <td>
-                                <Status statusColor="green">Andamento</Status>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Estudar React</td>
-                            <td>25 minutos</td>
-                            <td>20/06/2024</td>
-                            <td>
-                                <Status statusColor="red">Enterrado</Status>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Estudar React</td>
-                            <td>25 minutos</td>
-                            <td>20/06/2024</td>
-                            <td>
-                                <Status statusColor="yellow">Andamento</Status>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Estudar React</td>
-                            <td>25 minutos</td>
-                            <td>20/06/2024</td>
-                            <td>
-                                <Status statusColor="red">Enterrado</Status>
-                            </td>
-                        </tr>
-                    </tbody>
+                    {cycles.map((cycle) => {
+                        return (
+                            <tbody>
+                                <tr key={cycle.id}>
+                                    <td>{cycle.task}</td>
+                                    <td>{cycle.minutesAmount} minutos</td>
+                                    <td>
+                                        {formatDistanceToNow(cycle.startDate,
+                                            { addSuffix: true,
+                                                locale: ptBR })}
+                                    </td>
+                                    <td>
+                                        {cycle.finishedDate && (
+                                          <Status statusColor="green"> Concluido </Status>
+                                        )}                                  
+                                        
+                                        {cycle.interruptedDate && (
+                                            <Status statusColor="red">Interrompido</Status>
+                                        )}                                  
+                                        {!cycle.finishedDate && !cycle.interruptedDate && 
+                                          <Status statusColor="yellow">Empogreço</Status>
+                                        }                                  
+                                    </td>
+                                </tr>
+                            </tbody>
+                        )
+                    })}
                 </table>
             </HitoryList>
         </HitoryContainer >

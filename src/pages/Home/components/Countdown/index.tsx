@@ -1,17 +1,17 @@
 import { useContext } from 'react'
-import { CycleContext } from '../../index';
 import { useEffect} from 'react';
 import { differenceInSeconds } from 'date-fns';
 import { CountdownContainer, Separator } from "./styled"
+import { CycleContext } from '../../../../contexts/CyclesContext';
+
 
 //Essa função é responsável por exibir a contagem regressiva do ciclo ativo. Ela utiliza o contexto CycleContext para acessar informações sobre o ciclo ativo, como a quantidade total de segundos, os segundos passados e as funções para marcar o ciclo como concluído e atualizar os segundos passados. A função também utiliza o hook useEffect para configurar um intervalo que atualiza a contagem regressiva a cada segundo, verificando se o ciclo foi concluído ou não. Além disso, ela formata os minutos e segundos para exibição na interface do usuário.
 export function CountDown() {
     const { activeCycle,
-         activeCycleId, 
-         markCurrentCycleAsFinished, 
-         secondsPassed, 
-         setAmountSecondsPassed } =
-    useContext(CycleContext);
+            activeCycleId,
+            markCurrentCycleAsFinished,
+            secondsPassed,
+            setAmountSecondsPassed, } = useContext(CycleContext);
 
 //Essa linha calcula o total de segundos para o ciclo ativo. Se houver um ciclo ativo, ele multiplica a quantidade de minutos do ciclo por 60 para obter o total de segundos. Caso contrário, se não houver um ciclo ativo, o total de segundos é definido como 0. Essa variável é usada posteriormente para calcular o tempo restante e para determinar quando o ciclo deve ser marcado como concluído.     
     const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0;

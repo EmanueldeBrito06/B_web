@@ -4,17 +4,18 @@ import { Reuter } from './Router'
 
 import { defaultTheme } from './styles/themes/default'
 import { GlobalStyle } from './styles/global';
+import { CycleContextProvider } from './contexts/CyclesContext';
 
 export function App() {
   return (
 
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-
-        <Reuter />
-
+        <CycleContextProvider>
+          <Reuter />
+        </CycleContextProvider>
       </BrowserRouter>
-      
+
       <GlobalStyle />
     </ThemeProvider>
 
